@@ -1,0 +1,131 @@
+---
+const { title: directTitle, description: directDescription, frontmatter } = Astro.props;
+
+const title = frontmatter?.title || directTitle || "Bali Sunny Kids";
+const description = frontmatter?.description || directDescription || "Modern Kindergarten in Ubud, Bali. Providing quality early childhood education since 2000.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Bali Sunny Kids</title>
+		<meta name="description" content={description} />
+		
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-sunny-cream font-body text-sunny-charcoal min-h-screen flex flex-col">
+		<nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center shadow-sm">
+			<a href="/" class="flex items-center gap-2">
+				<span class="text-2xl md:text-3xl font-heading font-bold text-sunny-yellow">Bali Sunny Kids</span>
+			</a>
+			
+			<div class="hidden md:flex items-center gap-8 font-medium">
+				<a href="/about" class="hover:text-sunny-blue transition-colors">About</a>
+				<a href="/programs" class="hover:text-sunny-blue transition-colors">Programs</a>
+				<a href="/gallery" class="hover:text-sunny-blue transition-colors">Gallery</a>
+				<a href="/contact" class="hover:text-sunny-blue transition-colors">Contact</a>
+				<a href="/enrollment" class="bg-sunny-yellow text-sunny-charcoal px-6 py-2 rounded-full font-bold hover:bg-sunny-yellow/90 transition-all transform hover:scale-105">Enroll Now</a>
+			</div>
+			
+			<button id="menu-toggle" class="md:hidden text-sunny-charcoal p-2">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
+		</nav>
+
+		<!-- Mobile Menu Overlay -->
+		<div id="mobile-menu" class="fixed inset-0 bg-sunny-charcoal z-[60] flex flex-col items-center justify-center gap-8 text-white text-3xl font-heading transition-transform translate-x-full duration-300 md:hidden">
+			<button id="menu-close" class="absolute top-6 right-6">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</button>
+			<a href="/" class="hover:text-sunny-yellow transition-colors">Home</a>
+			<a href="/about" class="hover:text-sunny-yellow transition-colors">About</a>
+			<a href="/programs" class="hover:text-sunny-yellow transition-colors">Programs</a>
+			<a href="/gallery" class="hover:text-sunny-yellow transition-colors">Gallery</a>
+			<a href="/contact" class="hover:text-sunny-yellow transition-colors">Contact</a>
+			<a href="/enrollment" class="bg-sunny-yellow text-sunny-charcoal px-10 py-4 rounded-full font-bold">Enroll Now</a>
+		</div>
+
+		<script>
+			const menuToggle = document.getElementById('menu-toggle');
+			const menuClose = document.getElementById('menu-close');
+			const mobileMenu = document.getElementById('mobile-menu');
+
+			menuToggle?.addEventListener('click', () => {
+				mobileMenu?.classList.remove('translate-x-full');
+			});
+
+			menuClose?.addEventListener('click', () => {
+				mobileMenu?.classList.add('translate-x-full');
+			});
+
+			// Close menu when clicking a link
+			const mobileLinks = mobileMenu?.querySelectorAll('a');
+			mobileLinks?.forEach(link => {
+				link.addEventListener('click', () => {
+					mobileMenu?.classList.add('translate-x-full');
+				});
+			});
+		</script>
+
+		<main class="flex-grow">
+			{frontmatter ? (
+				<div class="max-w-4xl mx-auto px-6 py-20 prose prose-lg prose-headings:font-heading prose-headings:text-sunny-charcoal prose-a:text-sunny-blue">
+					<slot />
+				</div>
+			) : (
+				<slot />
+			)}
+		</main>
+
+		<footer class="bg-sunny-charcoal text-white py-12 px-6 md:px-12 mt-12">
+			<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+				<div>
+					<h3 class="font-heading text-2xl font-bold mb-4 text-sunny-yellow">Bali Sunny Kids</h3>
+					<p class="text-gray-300 leading-relaxed">
+						Guiding the young generation to success since 2000. Discover the joy of learning in Ubud, Bali.
+					</p>
+				</div>
+				
+				<div>
+					<h4 class="font-heading text-xl font-bold mb-4">Contact Us</h4>
+					<ul class="space-y-3 text-gray-300">
+						<li>📍 Ubud, Gianyar, Bali</li>
+						<li>📞 +62 812 345 678</li>
+						<li>✉️ balisunnykids@gmail.com</li>
+						<li>⏰ Mon-Fri 8am-5pm</li>
+					</ul>
+				</div>
+				
+				<div>
+					<h4 class="font-heading text-xl font-bold mb-4">Follow Us</h4>
+					<div class="flex gap-4">
+						<a href="#" class="bg-white/10 p-3 rounded-full hover:bg-sunny-yellow transition-colors">FB</a>
+						<a href="#" class="bg-white/10 p-3 rounded-full hover:bg-sunny-yellow transition-colors">IG</a>
+						<a href="#" class="bg-white/10 p-3 rounded-full hover:bg-sunny-yellow transition-colors">WA</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="max-w-7xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-gray-400 text-sm">
+				<p>© {new Date().getFullYear()} Bali Sunny Kids. All rights reserved.</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Fredoka', sans-serif;
+	}
+</style>

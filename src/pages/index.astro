@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home - Welcome to our Sunny Universe">
+	<!-- Hero Section -->
+	<section class="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
+		<div class="absolute inset-0 z-0">
+			<img 
+				src="https://images.unsplash.com/photo-1587654062363-20c7caaf7010?auto=format&fit=crop&q=80&w=2000" 
+				alt="Happy children playing" 
+				class="w-full h-full object-cover brightness-75 scale-105"
+			/>
+			<div class="absolute inset-0 bg-gradient-to-r from-sunny-charcoal/40 to-transparent"></div>
+		</div>
+		
+		<div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
+			<div class="max-w-2xl text-white">
+				<span class="inline-block bg-sunny-yellow text-sunny-charcoal px-4 py-1 rounded-full font-bold text-sm mb-6 uppercase tracking-wider">Now Enrolling for 2026</span>
+				<h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 leading-tight drop-shadow-lg">
+					The Universe is one great <span class="text-sunny-yellow underline decoration-sunny-yellow underline-offset-8">kindergarten</span> for man.
+				</h1>
+				<p class="text-xl md:text-2xl mb-10 text-gray-100 font-medium leading-relaxed drop-shadow-md">
+					Discover a warm, playful environment where every lesson is an adventure.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4">
+					<a href="/enrollment" class="bg-sunny-yellow text-sunny-charcoal px-8 py-4 rounded-full text-xl font-bold hover:bg-sunny-yellow/90 transition-all text-center">Discover More</a>
+					<a href="/contact" class="bg-white/20 backdrop-blur-md border-2 border-white/50 px-8 py-4 rounded-full text-xl font-bold hover:bg-white/30 transition-all text-center">Visit Us Today</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Quick Info -->
+	<div class="bg-sunny-yellow py-6 px-6 relative z-20 -mt-10 mx-6 md:mx-12 rounded-3xl shadow-xl border-4 border-white">
+		<div class="max-w-7xl mx-auto flex flex-wrap justify-around gap-8 items-center text-sunny-charcoal">
+			<div class="flex items-center gap-3">
+				<span class="text-2xl">📍</span>
+				<span class="font-bold">Ubud, Gianyar, Bali</span>
+			</div>
+			<div class="flex items-center gap-3 border-x-0 md:border-x border-sunny-charcoal/10 px-0 md:px-12">
+				<span class="text-2xl">⏰</span>
+				<span class="font-bold">Mon - Fri: 8:00am - 5:00pm</span>
+			</div>
+			<div class="flex items-center gap-3">
+				<span class="text-2xl">📞</span>
+				<span class="font-bold">+62 812 345 678</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Why Choose Us -->
+	<section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+		<div class="text-center mb-16">
+			<h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">Why Bali Sunny Kids?</h2>
+			<p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+				We provide a safe and nurturing space for your child to grow into a happy, healthy, and confident individual.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+			<div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border-b-8 border-sunny-yellow group">
+				<div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🎨</div>
+				<h3 class="text-2xl font-heading font-bold mb-4">Learn & Play</h3>
+				<p class="text-gray-600 leading-relaxed">Comprehensive development through fun activities and creative games.</p>
+			</div>
+			
+			<div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border-b-8 border-sunny-blue group">
+				<div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🍎</div>
+				<h3 class="text-2xl font-heading font-bold mb-4">Nutritious Meals</h3>
+				<p class="text-gray-600 leading-relaxed">Healthy, balanced meals to fuel growing bodies and active minds.</p>
+			</div>
+			
+			<div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border-b-8 border-sunny-green group">
+				<div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">👩‍🏫</div>
+				<h3 class="text-2xl font-heading font-bold mb-4">Great Teachers</h3>
+				<p class="text-gray-600 leading-relaxed">Qualified educators dedicated to your child's wellbeing and success.</p>
+			</div>
+			
+			<div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border-b-8 border-sunny-yellow group">
+				<div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform">🏡</div>
+				<h3 class="text-2xl font-heading font-bold mb-4">Cute Environment</h3>
+				<p class="text-gray-600 leading-relaxed">A colorful, safe, and stimulating space designed specifically for kids.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Programs Preview -->
+	<section class="bg-sunny-blue/10 py-24 px-6 md:px-12">
+		<div class="max-w-7xl mx-auto">
+			<div class="flex flex-col md:flex-row gap-16 items-center">
+				<div class="flex-1">
+					<h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">Our Educational Programs</h2>
+					<p class="text-lg text-gray-600 mb-8 leading-relaxed">
+						Operating since 2000, we offer specialized kindergarten programs tailored to your child's developmental stage.
+					</p>
+					
+					<div class="space-y-6">
+						<div class="bg-white p-6 rounded-2xl flex items-center gap-6 shadow-sm">
+							<div class="w-16 h-16 bg-sunny-yellow rounded-full flex items-center justify-center font-bold text-2xl">3</div>
+							<div>
+								<h4 class="text-xl font-bold">3-Year-Old Program</h4>
+								<p class="text-gray-600">Focusing on social skills, basic motor skills, and creative play.</p>
+							</div>
+						</div>
+						
+						<div class="bg-white p-6 rounded-2xl flex items-center gap-6 shadow-sm">
+							<div class="w-16 h-16 bg-sunny-blue rounded-full flex items-center justify-center font-bold text-2xl text-white">4</div>
+							<div>
+								<h4 class="text-xl font-bold">4-Year-Old Program</h4>
+								<p class="text-gray-600">Preparing for school with literacy, numeracy, and problem-solving.</p>
+							</div>
+						</div>
+					</div>
+					
+					<a href="/programs" class="inline-block mt-10 text-sunny-blue font-bold text-lg hover:underline decoration-2">View Curriculum Highlights →</a>
+				</div>
+				
+				<div class="flex-1 grid grid-cols-2 gap-4">
+					<img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=600" alt="Child activity" class="rounded-3xl shadow-lg mt-12" />
+					<img src="https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&q=80&w=600" alt="Child building blocks" class="rounded-3xl shadow-lg" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Activities Bento -->
+	<section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+		<div class="text-center mb-16">
+			<h2 class="text-4xl md:text-5xl font-heading font-bold mb-4 text-sunny-green">Playing in Learning</h2>
+			<p class="text-lg text-gray-600">Every day is filled with diverse activities to spark curiosity.</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<div class="relative group overflow-hidden rounded-3xl h-64 md:h-80">
+				<img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Outdoor Games" />
+				<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+					<h3 class="text-white text-2xl font-bold">Outdoor Games</h3>
+				</div>
+			</div>
+			
+			<div class="relative group overflow-hidden rounded-3xl h-64 md:h-80">
+				<img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Creative Arts" />
+				<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+					<h3 class="text-white text-2xl font-bold">Creative Activities</h3>
+				</div>
+			</div>
+			
+			<div class="relative group overflow-hidden rounded-3xl h-64 md:h-80">
+				<img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Sports" />
+				<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+					<h3 class="text-white text-2xl font-bold">Sport Activities</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonials -->
+	<section class="bg-sunny-yellow py-24 px-6 md:px-12 overflow-hidden">
+		<div class="max-w-7xl mx-auto text-center">
+			<h2 class="text-4xl md:text-5xl font-heading font-bold mb-16 text-sunny-charcoal">From Our Parents</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="bg-white p-8 rounded-4xl shadow-lg relative">
+					<div class="text-6xl text-sunny-yellow/20 absolute top-4 left-4 font-serif">“</div>
+					<p class="text-lg italic text-gray-700 relative z-10 mb-6">
+						"My son absolutely loves Bali Sunny Kids. He comes home every day with a new story and a huge smile. The teachers are so caring!"
+					</p>
+					<div class="font-bold text-sunny-charcoal">- Sarah, Ubud Expat Parent</div>
+				</div>
+				
+				<div class="bg-white p-8 rounded-4xl shadow-lg relative md:mt-12">
+					<div class="text-6xl text-sunny-yellow/20 absolute top-4 left-4 font-serif">“</div>
+					<p class="text-lg italic text-gray-700 relative z-10 mb-6">
+						"The focus on wellbeing and natural development is exactly what we were looking for. Highly recommend for any parents in Bali."
+					</p>
+					<div class="font-bold text-sunny-charcoal">- Putu, Local Parent</div>
+				</div>
+				
+				<div class="bg-white p-8 rounded-4xl shadow-lg relative">
+					<div class="text-6xl text-sunny-yellow/20 absolute top-4 left-4 font-serif">“</div>
+					<p class="text-lg italic text-gray-700 relative z-10 mb-6">
+						"Modern facilities in a warm, traditional Ubud setting. It's the perfect balance for early childhood education."
+					</p>
+					<div class="font-bold text-sunny-charcoal">- Michael, Digital Nomad Dad</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Final CTA -->
+	<section class="py-24 px-6 md:px-12 text-center">
+		<div class="max-w-4xl mx-auto bg-sunny-charcoal text-white p-12 md:p-20 rounded-[4rem] relative overflow-hidden">
+			<div class="absolute -top-20 -right-20 w-64 h-64 bg-sunny-yellow rounded-full blur-3xl opacity-20"></div>
+			<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-sunny-blue rounded-full blur-3xl opacity-20"></div>
+			
+			<h2 class="text-4xl md:text-6xl font-heading font-bold mb-8 relative z-10 leading-tight">
+				Ready to join the <br/><span class="text-sunny-yellow">Sunny Kids family?</span>
+			</h2>
+			<p class="text-xl text-gray-300 mb-12 relative z-10 max-w-xl mx-auto">
+				Book a tour today and meet our friendly educators in person.
+			</p>
+			<a href="/enrollment" class="relative z-10 bg-sunny-yellow text-sunny-charcoal px-12 py-5 rounded-full text-2xl font-bold hover:scale-105 transition-transform inline-block">Enroll Your Child Now</a>
+		</div>
+	</section>
+</Layout>
