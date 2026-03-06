@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Enrollment Form" description="Enroll your child at Bali Sunny Kids. Comprehensive online enrollment for 3-4 year olds in Ubud, Bali.">
+    <section class="py-12 px-6 md:px-12 max-w-5xl mx-auto">
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4 text-sunny-charcoal">Student Enrollment Form</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Please complete the form below. Fields marked with an asterisk (*) are required. You can save your progress and continue later.</p>
+        </div>
+
+        <!-- Progress Stepper -->
+        <div class="mb-12 flex justify-between items-start max-w-4xl mx-auto px-4 overflow-x-auto pb-4 gap-4 scrollbar-hide">
+            {[1, 2, 3, 4, 5, 6].map((step) => (
+                <div class="flex flex-col items-center min-w-[100px] text-center step-indicator" data-step={step}>
+                    <div class={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 transition-all ${step === 1 ? 'bg-sunny-blue text-white ring-4 ring-sunny-blue/20' : 'bg-gray-200 text-gray-400'}`}>
+                        {step}
+                    </div>
+                    <span class={`text-xs font-bold uppercase tracking-tighter ${step === 1 ? 'text-sunny-blue' : 'text-gray-400'}`}>
+                        {step === 1 && "Guardians"}
+                        {step === 2 && "Child(ren)"}
+                        {step === 3 && "Emergency"}
+                        {step === 4 && "Education"}
+                        {step === 5 && "Programs"}
+                        {step === 6 && "Consents"}
+                    </span>
+                </div>
+            ))}
+        </div>
+
+        <!-- Form Container -->
+        <form id="enrollment-form" name="enrollment" method="POST" data-netlify="true" class="bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl border-2 border-sunny-blue/5 relative overflow-hidden" enctype="multipart/form-data">
+            
+            <!-- SECTION 1: PARENT/GUARDIAN -->
+            <section data-step="1" class="space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-sunny-yellow/20 rounded-2xl flex items-center justify-center text-2xl">👤</div>
+                    <h2 class="text-3xl font-heading font-bold">Parent / Guardian Information</h2>
+                </div>
+
+                <div id="guardians-container" class="space-y-12">
+                    <!-- Guardian 1 Template (Visible) -->
+                    <div class="guardian-entry bg-sunny-cream/30 p-8 rounded-3xl border-2 border-dashed border-sunny-yellow/30 relative">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-bold mb-2">Full Name*</label>
+                                <input type="text" name="guardian_name[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="First, Middle, and Last Name" />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Relationship to Child*</label>
+                                <select name="guardian_rel[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none">
+                                    <option value="">Select relationship</option>
+                                    <option>Mother</option>
+                                    <option>Father</option>
+                                    <option>Legal Guardian</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Nationality*</label>
+                                <input type="text" name="guardian_nat[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="e.g. Indonesian, Australian" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">ID/Passport Type*</label>
+                                <select name="guardian_id_type[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none">
+                                    <option>Passport</option>
+                                    <option>KTP (Indonesian)</option>
+                                    <option>KITAS/KITAP (Expats)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">ID Number*</label>
+                                <input type="text" name="guardian_id_num[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="Enter ID number" />
+                            </div>
+
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-bold mb-2">Residential Address* (in Bali)</label>
+                                <textarea name="guardian_addr[]" required rows="3" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="Street, City, Postcode"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Email Address*</label>
+                                <input type="email" name="guardian_email[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="email@example.com" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Phone Number* (WhatsApp Preferred)</label>
+                                <div class="flex gap-2">
+                                    <select class="w-24 px-2 py-3 rounded-xl border-2 border-gray-100 outline-none">
+                                        <option>+62</option>
+                                        <option>+61</option>
+                                        <option>+1</option>
+                                        <option>+44</option>
+                                    </select>
+                                    <input type="tel" name="guardian_phone[]" required class="flex-grow px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" placeholder="812..." />
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Occupation</label>
+                                <input type="text" name="guardian_job[]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Comm. Language*</label>
+                                <select name="guardian_lang[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none">
+                                    <option>English</option>
+                                    <option>Bahasa Indonesia</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-guardian" class="flex items-center gap-2 text-sunny-blue font-bold hover:scale-105 transition-transform mt-4">
+                    <span class="text-2xl">+</span> Add Another Parent / Guardian
+                </button>
+            </section>
+
+            <!-- SECTION 2: CHILD INFORMATION -->
+            <section data-step="2" class="hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-sunny-blue/20 rounded-2xl flex items-center justify-center text-2xl">🧸</div>
+                    <h2 class="text-3xl font-heading font-bold">Child Information</h2>
+                </div>
+
+                <div id="children-container" class="space-y-12">
+                    <div class="child-entry bg-sunny-blue/5 p-8 rounded-3xl border-2 border-sunny-blue/10 relative">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-bold mb-2">Child's Full Name*</label>
+                                <input type="text" name="child_name[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Nickname / Preferred Name</label>
+                                <input type="text" name="child_nick[]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Date of Birth*</label>
+                                <input type="date" name="child_dob[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Nationality*</label>
+                                <input type="text" name="child_nat[]" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 focus:border-sunny-blue outline-none" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Birth Certificate / Passport Upload</label>
+                                <input type="file" name="child_id_file[]" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-sunny-blue/10 file:text-sunny-blue hover:file:bg-sunny-blue/20 cursor-pointer" />
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold mb-2">Blood Type</label>
+                                <select name="child_blood[]" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none">
+                                    <option>Unknown</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                </select>
+                            </div>
+
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-bold mb-2">Allergies (Food, Meds, Environmental)</label>
+                                <textarea name="child_allergies[]" rows="2" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" placeholder="Please list severity if known"></textarea>
+                            </div>
+
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-bold mb-2">Special Needs or Medical Conditions</label>
+                                <textarea name="child_medical[]" rows="2" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" placeholder="ADHD, Autism, or any other conditions we should know about"></textarea>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" name="child_iep[]" class="w-5 h-5 rounded text-sunny-blue focus:ring-sunny-blue" />
+                                <span class="text-sm font-bold">Requires Individualized Education Plan (IEP)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-child" class="flex items-center gap-2 text-sunny-blue font-bold hover:scale-105 transition-transform mt-4">
+                    <span class="text-2xl">+</span> Enroll Another Child
+                </button>
+            </section>
+
+            <!-- SECTION 3: EMERGENCY & MEDICAL -->
+            <section data-step="3" class="hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-2xl">🚑</div>
+                    <h2 class="text-3xl font-heading font-bold text-red-600">Emergency & Medical</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold border-b pb-2">Primary Emergency Contact</h3>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Full Name*</label>
+                            <input type="text" name="emergency_name" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Phone Number*</label>
+                            <input type="tel" name="emergency_phone" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Relationship*</label>
+                            <input type="text" name="emergency_rel" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold border-b pb-2">Medical Preferences</h3>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Family Doctor (Name & Phone)</label>
+                            <input type="text" name="family_doctor" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">Preferred Hospital (e.g. Siloam, BIMC)</label>
+                            <input type="text" name="pref_hospital" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" placeholder="Nearest Bali hospital" />
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" required name="med_auth" class="mt-1 w-5 h-5 rounded text-red-600" />
+                                <span class="text-sm font-medium text-red-900">
+                                    I hereby authorize Bali Sunny Kids staff to seek emergency medical treatment for my child if parents cannot be reached.*
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: EDUCATIONAL BACKGROUND -->
+            <section data-step="4" class="hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-sunny-green/20 rounded-2xl flex items-center justify-center text-2xl">📚</div>
+                    <h2 class="text-3xl font-heading font-bold">Educational Background</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm font-bold mb-2">Previous School or Daycare (if any)</label>
+                        <input type="text" name="prev_school" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Primary Language at Home*</label>
+                        <input type="text" name="home_lang" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Interests & Hobbies</label>
+                        <input type="text" name="child_interests" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" placeholder="Painting, Sports, Music, etc." />
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm font-bold mb-2">Anything else we should know about your child's learning style?</label>
+                        <textarea name="learning_style" rows="3" class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: PROGRAM & START -->
+            <section data-step="5" class="hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-sunny-yellow/20 rounded-2xl flex items-center justify-center text-2xl">🗓️</div>
+                    <h2 class="text-3xl font-heading font-bold">Programs & Start Date</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Desired Start Date*</label>
+                        <input type="date" name="start_date" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Applying For Group*</label>
+                        <select name="program_group" required class="w-full px-4 py-3 rounded-xl border-2 border-gray-100 outline-none">
+                            <option value="">Select a group</option>
+                            <option>3-Year-Old Kindergarten Program</option>
+                            <option>4-Year-Old Kindergarten Program</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2 p-8 bg-sunny-yellow/5 rounded-3xl border-2 border-sunny-yellow/20">
+                        <h3 class="text-xl font-bold mb-4">Additional Needs</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" name="bus_needed" class="w-5 h-5 rounded text-sunny-yellow" />
+                                <span class="text-sm font-bold">School Bus Service</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" name="after_care" class="w-5 h-5 rounded text-sunny-yellow" />
+                                <span class="text-sm font-bold">After-School Care</span>
+                            </label>
+                            <label class="flex items-center gap-3">
+                                <input type="checkbox" name="meals_plan" class="w-5 h-5 rounded text-sunny-yellow" />
+                                <span class="text-sm font-bold">Monthly Meal Plan</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: CONSENTS & SUBMIT -->
+            <section data-step="6" class="hidden space-y-8 animate-in fade-in slide-in-from-right-8 duration-500">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-sunny-blue/20 rounded-2xl flex items-center justify-center text-2xl">📝</div>
+                    <h2 class="text-3xl font-heading font-bold">Consents & Agreements</h2>
+                </div>
+
+                <div class="space-y-6 bg-gray-50 p-8 rounded-3xl border-2 border-gray-100">
+                    <label class="flex items-start gap-4 cursor-pointer group">
+                        <input type="checkbox" required class="mt-1 w-6 h-6 rounded text-sunny-blue" />
+                        <span class="text-sm font-medium text-gray-700 group-hover:text-sunny-blue transition-colors">
+                            I acknowledge that all information provided is accurate and I agree to the terms of enrollment.*
+                        </span>
+                    </label>
+
+                    <label class="flex items-start gap-4 cursor-pointer group">
+                        <input type="checkbox" class="mt-1 w-6 h-6 rounded text-sunny-blue" />
+                        <span class="text-sm font-medium text-gray-700 group-hover:text-sunny-blue transition-colors">
+                            I consent to my child's photos and videos being used for school marketing and activities.
+                        </span>
+                    </label>
+
+                    <label class="flex items-start gap-4 cursor-pointer group">
+                        <input type="checkbox" required class="mt-1 w-6 h-6 rounded text-sunny-blue" />
+                        <span class="text-sm font-medium text-gray-700 group-hover:text-sunny-blue transition-colors">
+                            I agree to follow the school health and safety guidelines (PDPA/Indonesian Regulation).*
+                        </span>
+                    </label>
+                </div>
+
+                <div class="bg-sunny-blue/5 p-8 rounded-3xl border-2 border-sunny-blue/20">
+                    <label class="block text-sm font-bold mb-2">Electronic Signature*</label>
+                    <input type="text" name="signature" required class="w-full px-4 py-4 rounded-xl border-2 border-white focus:border-sunny-blue outline-none text-xl italic font-serif" placeholder="Type your full name as signature" />
+                    <p class="text-xs text-gray-400 mt-2 italic">By typing your name, you are providing a digital signature equivalent to a handwritten one.</p>
+                </div>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <div class="mt-12 flex justify-between items-center border-t-2 border-gray-50 pt-8">
+                <button type="button" id="prev-btn" class="hidden bg-gray-100 text-gray-500 px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition-all">Previous</button>
+                <div class="flex-grow"></div>
+                <button type="button" id="next-btn" class="bg-sunny-blue text-white px-10 py-3 rounded-full font-bold hover:scale-105 transition-all shadow-lg shadow-sunny-blue/20">Next Step</button>
+                <button type="submit" id="submit-btn" class="hidden bg-sunny-yellow text-sunny-charcoal px-12 py-4 rounded-full font-bold hover:scale-110 transition-all shadow-xl shadow-sunny-yellow/20">Submit Enrollment</button>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 6;
+        const form = document.getElementById('enrollment-form');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+
+        function updateStep() {
+            // Update Visibility
+            document.querySelectorAll('section[data-step]').forEach(section => {
+                section.classList.toggle('hidden', parseInt(section.dataset.step) !== currentStep);
+            });
+
+            // Update Stepper UI
+            document.querySelectorAll('.step-indicator').forEach(indicator => {
+                const step = parseInt(indicator.dataset.step);
+                const circle = indicator.querySelector('div');
+                const label = indicator.querySelector('span');
+
+                if (step === currentStep) {
+                    circle.className = 'w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 transition-all bg-sunny-blue text-white ring-4 ring-sunny-blue/20';
+                    label.className = 'text-xs font-bold uppercase tracking-tighter text-sunny-blue';
+                } else if (step < currentStep) {
+                    circle.className = 'w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 transition-all bg-sunny-green text-white';
+                    circle.innerHTML = '✓';
+                    label.className = 'text-xs font-bold uppercase tracking-tighter text-sunny-green';
+                } else {
+                    circle.className = 'w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 transition-all bg-gray-200 text-gray-400';
+                    circle.innerHTML = step;
+                    label.className = 'text-xs font-bold uppercase tracking-tighter text-gray-400';
+                }
+            });
+
+            // Update Buttons
+            prevBtn.classList.toggle('hidden', currentStep === 1);
+            nextBtn.classList.toggle('hidden', currentStep === totalSteps);
+            submitBtn.classList.toggle('hidden', currentStep !== totalSteps);
+            
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            // Basic validation for current step
+            const currentSection = document.querySelector(`section[data-step="${currentStep}"]`);
+            const inputs = currentSection.querySelectorAll('input[required], select[required], textarea[required]');
+            let valid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value) {
+                    input.classList.add('border-red-300');
+                    valid = false;
+                } else {
+                    input.classList.remove('border-red-300');
+                }
+            });
+
+            if (valid && currentStep < totalSteps) {
+                currentStep++;
+                updateStep();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        });
+
+        // Dynamic Guardians/Children (Simplified for now, cloning the first entry)
+        document.getElementById('add-guardian').addEventListener('click', () => {
+            const container = document.getElementById('guardians-container');
+            const clone = container.firstElementChild.cloneNode(true);
+            clone.querySelectorAll('input').forEach(i => i.value = '');
+            container.appendChild(clone);
+        });
+
+        document.getElementById('add-child').addEventListener('click', () => {
+            const container = document.getElementById('children-container');
+            const clone = container.firstElementChild.cloneNode(true);
+            clone.querySelectorAll('input').forEach(i => i.value = '');
+            container.appendChild(clone);
+        });
+
+        form.addEventListener('submit', (e) => {
+            alert('Processing your enrollment... In a real environment, this would send data to Netlify Forms/Cloudflare.');
+        });
+    </script>
+</Layout>
+
+<style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
