@@ -143,15 +143,12 @@ const description = frontmatter?.description || directDescription || "Modern Kin
 		<script is:inline>
 			window.addEventListener('load', function () {
 				window.vapiSDK.run({
-					apiKey: "8e186ffe-01f1-4264-bea8-49fdf41a9977",
+					apiKey: "pk-5f04b11c-4f30-462b-81ba-de1c621617fc",
 					assistant: "f5846c2c-37b6-431e-9ea2-b2ce70a46cee",
 					config: {
-						position: "top-right",
-						size: "compact",
-						title: "Talk to us",
-						subtitle: "AI Assistant",
+						position: "bottom-right",
 						theme: {
-							primary: "#6366F1",
+							primary: "#5B5FFF",
 							secondary: "#FFFFFF"
 						}
 					}
@@ -159,12 +156,10 @@ const description = frontmatter?.description || directDescription || "Modern Kin
 			});
 		</script>
 		<style is:inline>
-			/* Custom offset and high z-index for Vapi widget */
+			/* High z-index for Vapi widget */
 			.vapi-btn {
-				margin-top: 80px !important;
 				z-index: 9999 !important;
 			}
-			/* Ensure the container is also on top */
 			#vapi-widget-container {
 				z-index: 9999 !important;
 			}

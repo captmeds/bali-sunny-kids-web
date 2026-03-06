@@ -6,10 +6,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "deploy": "npx wrangler pages deploy dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/tailwind": "^6.0.0",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.4.1",
