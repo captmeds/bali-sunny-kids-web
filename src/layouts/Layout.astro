@@ -133,37 +133,6 @@ const description = frontmatter?.description || directDescription || "Modern Kin
 				</div>
 			</div>
 		</footer>
-		<!-- Vapi Web Widget -->
-		<script
-			src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"
-			defer
-			async
-		></script>
-
-		<script is:inline>
-			window.addEventListener('load', function () {
-				window.vapiSDK.run({
-					apiKey: "pk-5f04b11c-4f30-462b-81ba-de1c621617fc",
-					assistant: "f5846c2c-37b6-431e-9ea2-b2ce70a46cee",
-					config: {
-						position: "bottom-right",
-						theme: {
-							primary: "#5B5FFF",
-							secondary: "#FFFFFF"
-						}
-					}
-				});
-			});
-		</script>
-		<style is:inline>
-			/* High z-index for Vapi widget */
-			.vapi-btn {
-				z-index: 9999 !important;
-			}
-			#vapi-widget-container {
-				z-index: 9999 !important;
-			}
-		</style>
 	</body>
 </html>
 

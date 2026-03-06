@@ -5,14 +5,53 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Home - Welcome to our Sunny Universe">
 	<!-- Hero Section -->
 	<section class="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden">
-		<div class="absolute inset-0 z-0">
+		<div class="absolute inset-0 z-0" id="hero-slider">
 			<img 
 				src="/images/hero-bg.jpg" 
 				alt="Happy children learning together at Bali Sunny Kids" 
-				class="w-full h-full object-cover brightness-75 scale-105"
+				class="hero-slide absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 opacity-100"
+			/>
+			<img 
+				src="/images/gallery/outdoor-play.jpg" 
+				alt="Children playing outdoors" 
+				class="hero-slide absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 opacity-0"
+			/>
+			<img 
+				src="/images/gallery/kids-together.jpg" 
+				alt="Kids sitting together" 
+				class="hero-slide absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 opacity-0"
+			/>
+			<img 
+				src="/images/gallery/indoor-play-1.jpg" 
+				alt="Indoor learning activities" 
+				class="hero-slide absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 opacity-0"
+			/>
+			<img 
+				src="/images/gallery/creative-drawing.jpg" 
+				alt="Creative drawing session" 
+				class="hero-slide absolute inset-0 w-full h-full object-cover brightness-75 scale-105 transition-opacity duration-1000 opacity-0"
 			/>
 			<div class="absolute inset-0 bg-gradient-to-r from-sunny-charcoal/40 to-transparent"></div>
 		</div>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const slides = document.querySelectorAll('.hero-slide');
+				let currentSlide = 0;
+
+				function nextSlide() {
+					slides[currentSlide].classList.remove('opacity-100');
+					slides[currentSlide].classList.add('opacity-0');
+					
+					currentSlide = (currentSlide + 1) % slides.length;
+					
+					slides[currentSlide].classList.remove('opacity-0');
+					slides[currentSlide].classList.add('opacity-100');
+				}
+
+				setInterval(nextSlide, 5000);
+			});
+		</script>
 		
 		<div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
 			<div class="max-w-2xl text-white">
